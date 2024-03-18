@@ -27,18 +27,20 @@ public class PlayerMovement : MonoBehaviour
         {
             MoveRight();
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
-        else if (Input.GetKeyDown(KeyCode.K))
-        {
-            anim.SetTrigger("kick");
-        }
         else
         {
             speed = 0;
             anim.SetFloat("speed", speed);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            anim.SetTrigger("kick");
         }
     }
 

@@ -1,29 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.AnimatedValues;
 using UnityEngine;
 
-public class Kick : MonoBehaviour
+public class NewKick : MonoBehaviour
 {
-    public float force = 100f;
     public GameObject ball;
+    public float force = 100f;
     Rigidbody2D rbBall;
-
-    private void Start()
+    // Start is called before the first frame update
+    void Awake()
     {
-        ball = GameObject.FindGameObjectWithTag("Ball");
         rbBall = ball.GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Ball")
         {
-            if (Input.GetKeyDown(KeyCode.K))
+            print("°ø¿¡ ´êÀ½");
+
+            if (Input.GetKey(KeyCode.K))
             {
+                print("kick");
                 Vector2 pos = (collision.gameObject.transform.position - transform.position).normalized;
                 rbBall.AddForce(pos * force, ForceMode2D.Impulse);
-                print("kick");
             }
         }
     }
